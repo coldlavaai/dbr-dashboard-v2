@@ -143,6 +143,7 @@ export async function getCurrentUser() {
       email: string
       full_name: string | null
       role: string
+      is_super_admin: boolean
       created_at: string
       updated_at: string
     } | null,
