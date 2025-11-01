@@ -127,14 +127,27 @@ export async function getCurrentUser() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (!user) return null
+  if (!user) {
+    console.log('[getCurrentUser] No auth user')
+    return null
+  }
+
+  console.log('[getCurrentUser] Auth user ID:', user.id)
+  console.log('[getCurrentUser] Auth user email:', user.email)
 
   // Get user profile from our users table
-  const { data: profile } = await (supabase
+  const { data: profile, error } = await (supabase
     .from('users') as any)
     .select('*')
     .eq('id', user.id)
     .single()
+
+  console.log('[getCurrentUser] Profile query result:', profile)
+  console.log('[getCurrentUser] Profile query error:', error)
+
+  if (error) {
+    console.error('[getCurrentUser] ERROR fetching profile:', error)
+  }
 
   return {
     ...user,
