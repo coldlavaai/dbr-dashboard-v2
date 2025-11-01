@@ -33,7 +33,7 @@ export default async function AdminDashboardPage() {
         status,
         plan,
         created_at,
-        user_clients!inner(
+        user_clients(
           users(
             email,
             full_name
