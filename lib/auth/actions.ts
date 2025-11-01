@@ -130,15 +130,11 @@ export async function getCurrentUser() {
   if (!user) return null
 
   // Get user profile from our users table
-  const { data: profile, error: profileError } = await (supabase
+  const { data: profile } = await (supabase
     .from('users') as any)
     .select('*')
     .eq('id', user.id)
     .single()
-
-  console.log('[AUTH DEBUG] Profile query result:', profile)
-  console.log('[AUTH DEBUG] Profile query error:', profileError)
-  console.log('[AUTH DEBUG] User email:', user.email)
 
   return {
     ...user,
