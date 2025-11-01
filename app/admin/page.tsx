@@ -21,7 +21,7 @@ export default async function AdminDashboardPage() {
   const [
     { count: totalCompanies },
     { count: totalUsers },
-    { data: recentCompanies },
+    { data: recentCompanies, error: companiesError },
   ] = await Promise.all([
     (supabase.from('clients') as any).select('*', { count: 'exact', head: true }),
     (supabase.from('users') as any).select('*', { count: 'exact', head: true }),
@@ -30,6 +30,10 @@ export default async function AdminDashboardPage() {
       .order('created_at', { ascending: false })
       .limit(10),
   ])
+
+  console.log('[ADMIN] recentCompanies:', recentCompanies)
+  console.log('[ADMIN] companiesError:', companiesError)
+  console.log('[ADMIN] recentCompanies length:', recentCompanies?.length)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/10 to-primary/5">
