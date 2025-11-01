@@ -57,13 +57,29 @@ export async function signIn(formData: FormData) {
   const email = formData.get('email') as string
   const password = formData.get('password') as string
 
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   })
 
   if (error) {
     return { error: error.message }
+  }
+
+  // Check if user is super admin
+  if (data.user) {
+    const { data: profile } = await (supabase
+      .from('users') as any)
+      .select('is_super_admin')
+      .eq('id', data.user.id)
+      .single()
+
+    revalidatePath('/', 'layout')
+
+    // Redirect super admins to admin dashboard
+    if (profile?.is_super_admin) {
+      redirect('/admin')
+    }
   }
 
   revalidatePath('/', 'layout')
