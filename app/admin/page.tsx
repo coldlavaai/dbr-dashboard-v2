@@ -26,20 +26,7 @@ export default async function AdminDashboardPage() {
     (supabase.from('clients') as any).select('*', { count: 'exact', head: true }),
     (supabase.from('users') as any).select('*', { count: 'exact', head: true }),
     (supabase.from('clients') as any)
-      .select(`
-        id,
-        company_name,
-        industry,
-        status,
-        plan,
-        created_at,
-        user_clients(
-          users(
-            email,
-            full_name
-          )
-        )
-      `)
+      .select('id, company_name, industry, status, plan, created_at')
       .order('created_at', { ascending: false })
       .limit(10),
   ])
@@ -182,7 +169,6 @@ export default async function AdminDashboardPage() {
             <div className="space-y-4">
               {recentCompanies && recentCompanies.length > 0 ? (
                 recentCompanies.map((company: any) => {
-                  const owner = company.user_clients?.[0]?.users
                   return (
                     <div
                       key={company.id}
@@ -195,7 +181,7 @@ export default async function AdminDashboardPage() {
                             {company.industry}
                           </p>
                           <span className="text-sm text-muted-foreground">
-                            {owner?.email || 'No owner'}
+                            Created {new Date(company.created_at).toLocaleDateString()}
                           </span>
                         </div>
                       </div>
