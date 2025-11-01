@@ -30,15 +30,15 @@ Sophie is an AI conversation coach that:
 ## 📚 Complete Documentation
 
 ### Architecture & Design
-1. **[Database Schema](DBR_V2_DATABASE_SCHEMA.md)** - Complete Supabase/PostgreSQL structure (13 tables)
-2. **[Component Architecture](DBR_V2_COMPONENT_ARCHITECTURE.md)** - UI components and frontend structure
-3. **[Sophie Intelligence](DBR_V2_SOPHIE_INTELLIGENCE.md)** - AI coaching system design
-4. **[Prompt System](PROMPT_SYSTEM.md)** - AI agent prompt builder, templates, and versioning (NEW)
-5. **[API Routes](DBR_V2_API_ROUTES.md)** - All backend endpoints and data flows
+1. **[Database Schema](docs/DBR_V2_DATABASE_SCHEMA.md)** - Complete Supabase/PostgreSQL structure (13 tables)
+2. **[Component Architecture](docs/DBR_V2_COMPONENT_ARCHITECTURE.md)** - UI components and frontend structure
+3. **[Sophie Intelligence](docs/DBR_V2_SOPHIE_INTELLIGENCE.md)** - AI coaching system design
+4. **[Prompt System](docs/PROMPT_SYSTEM.md)** - AI agent prompt builder, templates, and versioning (NEW)
+5. **[API Routes](docs/DBR_V2_API_ROUTES.md)** - All backend endpoints and data flows
 
 ### Build Plan & Decisions
-6. **[4-6 Week Build Plan](DBR_V2_BUILD_PLAN.md)** - Day-by-day development schedule
-7. **[Q&A Decisions](Q&A_DECISIONS.md)** - All 50+ architectural decisions documented (NEW)
+6. **[4-6 Week Build Plan](docs/DBR_V2_BUILD_PLAN.md)** - Day-by-day development schedule
+7. **[Q&A Decisions](docs/Q&A_DECISIONS.md)** - All 50+ architectural decisions documented (NEW)
 
 ---
 
