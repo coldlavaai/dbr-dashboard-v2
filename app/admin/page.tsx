@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import { getCurrentUser } from '@/lib/auth/actions'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { createClient as createServerClient } from '@/lib/supabase/server'
+import { createServiceRoleClient } from '@/lib/supabase/server'
 
 export default async function AdminDashboardPage() {
   const user = await getCurrentUser()
@@ -15,7 +15,8 @@ export default async function AdminDashboardPage() {
     redirect('/dashboard')
   }
 
-  const supabase = await createServerClient()
+  // Use service role client to bypass RLS for admin operations
+  const supabase = createServiceRoleClient()
 
   // Fetch admin stats
   const [
